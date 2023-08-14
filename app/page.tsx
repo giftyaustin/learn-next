@@ -9,16 +9,18 @@ const fetchApi = async()=>{
 
 
 
-export default function Home() {
-  let message = ''
-  const runServerFunction = async()=>{
-    message = await fetchApi()
-  }
-  runServerFunction();
-
+export default async function Home() {
+  var message:TestResponse;
+const runServer = async ()=>{
+  message = await fetchApi();
+  return message;
+}
+message = await runServer();
   return (
     <>
-    {message}
+    this is a test
+    <br />
+    <>{message.message || ' string'}</>
     </>
   )
 }

@@ -1,7 +1,7 @@
-'use client'
+
 
 const fetchApi = async()=>{
-  const res = await fetch("/api/")
+  const res = await fetch(`${process.env.HOST_NAME}/api/`)
   const response = await res.json()
   return response
 
@@ -10,19 +10,15 @@ const fetchApi = async()=>{
 
 
 export default function Home() {
-  // const {message} = await fetchApi()
-  let response:any = ''
-  const func = async()=>{
-    const res = await fetch("/api/")
-    console.log(res)
-    response = await res.json()
-    console.log(response)
+  let message = ''
+  const runServerFunction = async()=>{
+    message = await fetchApi()
   }
-  func();
+  runServerFunction();
 
   return (
     <>
-    {/* {console.log(response)} */}
+    {message}
     </>
   )
 }
